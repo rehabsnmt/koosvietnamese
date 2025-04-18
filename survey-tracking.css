@@ -1,0 +1,7 @@
+/* Căn chỉnh cho phần hiển thị số lượt hoàn thành */
+#completionCount {
+  text-align: right; /* Căn phải */
+  font-size: 20px;   /* Cỡ chữ */
+  padding-right: 20px; /* Khoảng cách lề phải */
+  color: #333;       /* Màu chữ */
+}
