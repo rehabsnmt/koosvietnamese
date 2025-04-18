@@ -1,5 +1,7 @@
 import { hienThiSoLuong, tangSoLuongHoanThanh } from "./firebase-counter.js";
-  hienThiSoLuong();
+document.addEventListener("DOMContentLoaded", function () {
+  hienThiSoLuong(); // Hiển thị số lượt hoàn thành khi trang tải
+});
 document.addEventListener("DOMContentLoaded", function () {
   // Highlight selected answer
   document.querySelectorAll(".options label").forEach((label) => {
