@@ -1,4 +1,9 @@
+import { hienThiSoLuong, tangSoLuongHoanThanh } from "./firebase-counter.js";
+
 document.addEventListener("DOMContentLoaded", function () {
+  // Hiển thị số lượt hoàn thành khảo sát
+  hienThiSoLuong();
+
   // Highlight selected answer
   document.querySelectorAll(".options label").forEach((label) => {
     label.addEventListener("click", function () {
@@ -53,11 +58,16 @@ document.addEventListener("DOMContentLoaded", function () {
     for (const [key, value] of Object.entries(scores)) {
       const scoreElement = document.createElement("div");
       scoreElement.classList.add("score-item");
-      scoreElement.innerHTML = `<strong>${key.toUpperCase()}:</strong> ${value !== null ? value : "Chưa trả lời đủ câu hỏi"}`;
+      scoreElement.innerHTML = `<strong>${key.toUpperCase()}:</strong> ${
+        value !== null ? value : "Chưa trả lời đủ câu hỏi"
+      }`;
       resultContainer.appendChild(scoreElement);
     }
 
     document.getElementById("thankYouMessage").style.display = "block";
+
+    // Tăng số lượt hoàn thành khảo sát
+    tangSoLuongHoanThanh();
   }
 
   // Handle calculate button click
