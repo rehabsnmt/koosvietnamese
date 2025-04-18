@@ -10,21 +10,19 @@
   <script type="module" src="./firebase-config.js"></script>
   <script type="module" src="./firebase-counter.js"></script>
 </head>
-
 <body>
   <div class="container">
+    <!-- Header -->
     <header>
-      <h2>Knee injury and Osteoarthritis Outcome Score (KOOS) ©</h2>
+      <h2>Knee Injury and Osteoarthritis Outcome Score (KOOS) ©</h2>
       <p>Khảo sát KHỚP GỐI</p>
     </header>
 
+    <!-- Instructions Section -->
     <section class="instructions">
       <p><strong>HƯỚNG DẪN:</strong> Bản khảo sát này hỏi quan điểm của bạn về khớp gối của mình. Thông tin này sẽ giúp chúng tôi theo dõi được bạn cảm nhận như thế nào về khớp gối của mình và mức độ bạn có thể thực hiện các hoạt động thông thường. Trả lời mọi câu hỏi bằng cách đánh dấu vào ô thích hợp, chỉ đánh <u>một</u> ô cho mỗi câu hỏi. Nếu bạn không chắc chắn về cách trả lời câu hỏi, vui lòng đưa ra câu trả lời tốt nhất có thể.</p>
     </section>
-
-    <form id="koosForm">
-      <!-- Triệu chứng -->
-     <div class="section">
+<div class="section">
   <h3 class="section-title">TRIỆU CHỨNG</h3>
   <p class="section-description">
     Những câu hỏi này nên được trả lời dựa vào những triệu chứng ở khớp gối của bạn trong <strong>tuần trước</strong>.
@@ -92,7 +90,6 @@
     Các câu hỏi sau đây liên quan đến mức độ cứng khớp gối mà bạn đã trải qua trong <strong>tuần trước</strong>.
     Cứng khớp là cảm giác hạn chế hoặc bị chậm chạp khi cử động khớp gối.
   </p>
-</div>
 
   <div class="question" data-question="6">
     <h4>S6. Khớp gối của bạn cứng ở mức độ nào ngay sau khi tỉnh dậy vào buổi sáng?</h4>
@@ -418,7 +415,7 @@
       <label><input type="radio" name="q33" value="4" /> Cực kì khó khăn</label>
     </div>
   </div>
-</div>
+
      <div class="section">
   <h3 class="section-title">CÁC HOẠT ĐỘNG CHỨC NĂNG, THỂ THAO, GIẢI TRÍ</h3>
   <p class="section-description">
@@ -529,7 +526,8 @@
     </div>
   </div>
 </div>
-
+     <!-- Các câu hỏi khác tương tự -->
+      <!-- Mỗi câu hỏi sẽ được giữ nguyên cấu trúc để dễ dàng sửa đổi -->
 
       <div id="thankYouMessage" style="display: none;">Cảm ơn bạn rất nhiều đã hoàn thành tất cả câu hỏi của bảng câu hỏi này.</div>
 
