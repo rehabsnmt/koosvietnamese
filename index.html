@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Công cụ tính điểm online</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script type="module" src="./firebase-config.js"></script>
+  <script type="module" src="./firebase-counter.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h2>Knee injury and Osteoarthritis Outcome Score (KOOS) ©</h2>
+      <p>Khảo sát KHỚP GỐI</p>
+    </header>
+
+    <section class="instructions">
+      <p><strong>HƯỚNG DẪN:</strong> Bản khảo sát này hỏi quan điểm của bạn về khớp gối của mình. Thông tin này sẽ giúp chúng tôi theo dõi được bạn cảm nhận như thế nào về khớp gối của mình và mức độ bạn có thể thực hiện các hoạt động thông thường. Trả lời mọi câu hỏi bằng cách đánh dấu vào ô thích hợp, chỉ đánh <u>một</u> ô cho mỗi câu hỏi. Nếu bạn không chắc chắn về cách trả lời câu hỏi, vui lòng đưa ra câu trả lời tốt nhất có thể.</p>
+    </section>
+
+    <form id="koosForm">
+      <!-- Triệu chứng -->
+     <div class="section">
+  <h3 class="section-title">TRIỆU CHỨNG</h3>
+  <p class="section-description">
+    Những câu hỏi này nên được trả lời dựa vào những triệu chứng ở khớp gối của bạn trong <strong>tuần trước</strong>.
+  </p>
+
+  <div class="question" data-question="1">
+    <h4>S1. Bạn có bị sưng ở khớp gối không?</h4>
+    <div class="options">
+      <label><input type="radio" name="q1" value="0" /> Không bao giờ</label>
+      <label><input type="radio" name="q1" value="1" /> Hiếm khi</label>
+      <label><input type="radio" name="q1" value="2" /> Thỉnh thoảng</label>
+      <label><input type="radio" name="q1" value="3" /> Thường xuyên</label>
+      <label><input type="radio" name="q1" value="4" /> Luôn luôn</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="2">
+    <h4>S2. Bạn có cảm thấy tiếng lạo xạo, tiếng lách tách hay âm thanh nào khác khi bạn cử động khớp gối không?</h4>
+    <div class="options">
+      <label><input type="radio" name="q2" value="0" /> Không bao giờ</label>
+      <label><input type="radio" name="q2" value="1" /> Hiếm khi</label>
+      <label><input type="radio" name="q2" value="2" /> Thỉnh thoảng</label>
+      <label><input type="radio" name="q2" value="3" /> Thường xuyên</label>
+      <label><input type="radio" name="q2" value="4" /> Luôn luôn</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="3">
+    <h4>S3. Khớp gối của bạn có bị vướng hay dừng đột ngột khi cử động không?</h4>
+    <div class="options">
+      <label><input type="radio" name="q3" value="0" /> Không bao giờ</label>
+      <label><input type="radio" name="q3" value="1" /> Hiếm khi</label>
+      <label><input type="radio" name="q3" value="2" /> Thỉnh thoảng</label>
+      <label><input type="radio" name="q3" value="3" /> Thường xuyên</label>
+      <label><input type="radio" name="q3" value="4" /> Luôn luôn</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="4">
+    <h4>S4. Bạn có thể duỗi thẳng khớp gối hoàn toàn không?</h4>
+    <div class="options">
+      <label><input type="radio" name="q4" value="0" /> Luôn luôn</label>
+      <label><input type="radio" name="q4" value="1" /> Thường xuyên</label>
+      <label><input type="radio" name="q4" value="2" /> Thỉnh thoảng</label>
+      <label><input type="radio" name="q4" value="3" /> Hiếm khi</label>
+      <label><input type="radio" name="q4" value="4" /> Không bao giờ</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="5">
+    <h4>S5. Bạn có thể co/gập khớp gối hoàn toàn không?</h4>
+    <div class="options">
+      <label><input type="radio" name="q5" value="0" /> Luôn luôn</label>
+      <label><input type="radio" name="q5" value="1" /> Thường xuyên</label>
+      <label><input type="radio" name="q5" value="2" /> Thỉnh thoảng</label>
+      <label><input type="radio" name="q5" value="3" /> Hiếm khi</label>
+      <label><input type="radio" name="q5" value="4" /> Không bao giờ</label>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3 class="section-title">CỨNG KHỚP</h3>
+  <p class="section-description">
+    Các câu hỏi sau đây liên quan đến mức độ cứng khớp gối mà bạn đã trải qua trong <strong>tuần trước</strong>.
+    Cứng khớp là cảm giác hạn chế hoặc bị chậm chạp khi cử động khớp gối.
+  </p>
+</div>
+
+  <div class="question" data-question="6">
+    <h4>S6. Khớp gối của bạn cứng ở mức độ nào ngay sau khi tỉnh dậy vào buổi sáng?</h4>
+    <div class="options">
+      <label><input type="radio" name="q6" value="0" /> Không</label>
+      <label><input type="radio" name="q6" value="1" /> Ít</label>
+      <label><input type="radio" name="q6" value="2" /> Vừa phải</label>
+      <label><input type="radio" name="q6" value="3" /> Nghiêm trọng</label>
+      <label><input type="radio" name="q6" value="4" /> Cực kì nghiêm trọng</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="7">
+    <h4>S7. Khớp gối của bạn cứng ở mức độ nào ngay sau khi ngồi, nằm hay nghỉ ngơi vào cuối ngày?</h4>
+    <div class="options">
+      <label><input type="radio" name="q7" value="0" /> Không</label>
+      <label><input type="radio" name="q7" value="1" /> Ít</label>
+      <label><input type="radio" name="q7" value="2" /> Vừa phải</label>
+      <label><input type="radio" name="q7" value="3" /> Nghiêm trọng</label>
+      <label><input type="radio" name="q7" value="4" /> Cực kì nghiêm trọng</label>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3 class="section-title">ĐAU</h3>
+
+  <div class="question" data-question="8">
+    <h4>P1. Bao lâu bạn bị đau khớp gối một lần? (Tần suất đau khớp gối)</h4>
+    <div class="options">
+      <label><input type="radio" name="q8" value="0" /> Không bao giờ</label>
+      <label><input type="radio" name="q8" value="1" /> Hàng tháng</label>
+      <label><input type="radio" name="q8" value="2" /> Hàng tuần</label>
+      <label><input type="radio" name="q8" value="3" /> Hàng ngày</label>
+      <label><input type="radio" name="q8" value="4" /> Luôn luôn</label>
+    </div>
+  </div>
+
+  <p class="section-description">
+    <strong>Tuần trước</strong>, bạn thấy đau khớp gối ở mức độ nào trong các hoạt động sau đây?
+  </p>
+
+  <div class="question" data-question="9">
+    <h4>P2. Tuần trước, bạn thấy đau khớp gối ở mức độ nào khi vặn/xoay người trên khớp gối?</h4>
+    <div class="options">
+      <label><input type="radio" name="q9" value="0" /> Không</label>
+      <label><input type="radio" name="q9" value="1" /> Ít</label>
+      <label><input type="radio" name="q9" value="2" /> Vừa phải</label>
+      <label><input type="radio" name="q9" value="3" /> Nghiêm trọng</label>
+      <label><input type="radio" name="q9" value="4" /> Cực kì nghiêm trọng</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="10">
+    <h4>P3. Tuần trước, bạn thấy đau khớp gối ở mức độ nào khi duỗi thẳng đầu gối hoàn toàn?</h4>
+    <div class="options">
+      <label><input type="radio" name="q10" value="0" /> Không</label>
+      <label><input type="radio" name="q10" value="1" /> Ít</label>
+      <label><input type="radio" name="q10" value="2" /> Vừa phải</label>
+      <label><input type="radio" name="q10" value="3" /> Nghiêm trọng</label>
+      <label><input type="radio" name="q10" value="4" /> Cực kì nghiêm trọng</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="11">
+    <h4>P4. Tuần trước, bạn thấy đau khớp gối ở mức độ nào khi co/gập khớp gối hoàn toàn?</h4>
+    <div class="options">
+      <label><input type="radio" name="q11" value="0" /> Không</label>
+      <label><input type="radio" name="q11" value="1" /> Ít</label>
+      <label><input type="radio" name="q11" value="2" /> Vừa phải</label>
+      <label><input type="radio" name="q11" value="3" /> Nghiêm trọng</label>
+      <label><input type="radio" name="q11" value="4" /> Cực kì nghiêm trọng</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="12">
+    <h4>P5. Tuần trước, bạn thấy đau khớp gối ở mức độ nào khi đi bộ trên bề mặt phẳng?</h4>
+    <div class="options">
+      <label><input type="radio" name="q12" value="0" /> Không</label>
+      <label><input type="radio" name="q12" value="1" /> Ít</label>
+      <label><input type="radio" name="q12" value="2" /> Vừa phải</label>
+      <label><input type="radio" name="q12" value="3" /> Nghiêm trọng</label>
+      <label><input type="radio" name="q12" value="4" /> Cực kì nghiêm trọng</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="13">
+    <h4>P6. Tuần trước, bạn thấy đau khớp gối ở mức độ nào khi đi lên hoặc xuống cầu thang?</h4>
+    <div class="options">
+      <label><input type="radio" name="q13" value="0" /> Không</label>
+      <label><input type="radio" name="q13" value="1" /> Ít</label>
+      <label><input type="radio" name="q13" value="2" /> Vừa phải</label>
+      <label><input type="radio" name="q13" value="3" /> Nghiêm trọng</label>
+      <label><input type="radio" name="q13" value="4" /> Cực kì nghiêm trọng</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="14">
+    <h4>P7. Tuần trước, bạn thấy đau khớp gối ở mức độ nào khi nằm trên giường vào ban đêm?</h4>
+    <div class="options">
+      <label><input type="radio" name="q14" value="0" /> Không</label>
+      <label><input type="radio" name="q14" value="1" /> Ít</label>
+      <label><input type="radio" name="q14" value="2" /> Vừa phải</label>
+      <label><input type="radio" name="q14" value="3" /> Nghiêm trọng</label>
+      <label><input type="radio" name="q14" value="4" /> Cực kì nghiêm trọng</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="15">
+    <h4>P8. Tuần trước, bạn thấy đau khớp gối ở mức độ nào khi ngồi hoặc nằm?</h4>
+    <div class="options">
+      <label><input type="radio" name="q15" value="0" /> Không</label>
+      <label><input type="radio" name="q15" value="1" /> Ít</label>
+      <label><input type="radio" name="q15" value="2" /> Vừa phải</label>
+      <label><input type="radio" name="q15" value="3" /> Nghiêm trọng</label>
+      <label><input type="radio" name="q15" value="4" /> Cực kì nghiêm trọng</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="16">
+    <h4>P9. Tuần trước, bạn thấy đau khớp gối ở mức độ nào khi đứng thẳng?</h4>
+    <div class="options">
+      <label><input type="radio" name="q16" value="0" /> Không</label>
+      <label><input type="radio" name="q16" value="1" /> Ít</label>
+      <label><input type="radio" name="q16" value="2" /> Vừa phải</label>
+      <label><input type="radio" name="q16" value="3" /> Nghiêm trọng</label>
+      <label><input type="radio" name="q16" value="4" /> Cực kì nghiêm trọng</label>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3 class="section-title">CHỨC NĂNG, HOẠT ĐỘNG SINH HOẠT HÀNG NGÀY</h3>
+  <p class="section-description">
+    Các câu hỏi tiếp theo quan tâm đến hoạt động thể chất của bạn. Điều này nghĩa là khả năng di chuyển xung quanh và chăm sóc bản thân.
+    Đối với mỗi hoạt động dưới đây, vui lòng cho biết mức độ khó khăn mà bạn đã trải qua trong <strong>tuần trước</strong> do khớp gối của bạn.
+  </p>
+
+  <div class="question" data-question="17">
+    <h4>A1. Đi xuống cầu thang</h4>
+    <div class="options">
+      <label><input type="radio" name="q17" value="0" /> Không khó khăn</label>
+      <label><input type="radio" name="q17" value="1" /> Khó khăn ít</label>
+      <label><input type="radio" name="q17" value="2" /> Khó khăn vừa phải</label>
+      <label><input type="radio" name="q17" value="3" /> Khó khăn nhiều</label>
+      <label><input type="radio" name="q17" value="4" /> Cực kì khó khăn</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="18">
+    <h4>A2. Đi lên cầu thang</h4>
+    <div class="options">
+      <label><input type="radio" name="q18" value="0" /> Không khó khăn</label>
+      <label><input type="radio" name="q18" value="1" /> Khó khăn ít</label>
+      <label><input type="radio" name="q18" value="2" /> Khó khăn vừa phải</label>
+      <label><input type="radio" name="q18" value="3" /> Khó khăn nhiều</label>
+      <label><input type="radio" name="q18" value="4" /> Cực kì khó khăn</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="19">
+    <h4>A3. Đứng dậy từ bất cứ tư thế ngồi nào?</h4>
+    <div class="options">
+      <label><input type="radio" name="q19" value="0" /> Không khó khăn</label>
+      <label><input type="radio" name="q19" value="1" /> Khó khăn ít</label>
+      <label><input type="radio" name="q19" value="2" /> Khó khăn vừa phải</label>
+      <label><input type="radio" name="q19" value="3" /> Khó khăn nhiều</label>
+      <label><input type="radio" name="q19" value="4" /> Cực kì khó khăn</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="20">
+    <h4>A4. Đứng</h4>
+    <div class="options">
+      <label><input type="radio" name="q20" value="0" /> Không khó khăn</label>
+      <label><input type="radio" name="q20" value="1" /> Khó khăn ít</label>
+      <label><input type="radio" name="q20" value="2" /> Khó khăn vừa phải</label>
+      <label><input type="radio" name="q20" value="3" /> Khó khăn nhiều</label>
+      <label><input type="radio" name="q20" value="4" /> Cực kì khó khăn</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="21">
+    <h4>A5. Cúi người xuống sàn/nhặt vật</h4>
+    <div class="options">
+      <label><input type="radio" name="q21" value="0" /> Không khó khăn</label>
+      <label><input type="radio" name="q21" value="1" /> Khó khăn ít</label>
+      <label><input type="radio" name="q21" value="2" /> Khó khăn vừa phải</label>
+      <label><input type="radio" name="q21" value="3" /> Khó khăn nhiều</label>
+      <label><input type="radio" name="q21" value="4" /> Cực kì khó khăn</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="22">
+    <h4>A6. Đi bộ trên bề mặt phẳng</h4>
+    <div class="options">
+      <label><input type="radio" name="q22" value="0" /> Không khó khăn</label>
+      <label><input type="radio" name="q22" value="1" /> Khó khăn ít</label>
+      <label><input type="radio" name="q22" value="2" /> Khó khăn vừa phải</label>
+      <label><input type="radio" name="q22" value="3" /> Khó khăn nhiều</label>
+      <label><input type="radio" name="q22" value="4" /> Cực kì khó khăn</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="23">
+    <h4>A7. Lên/xuống xe</h4>
+    <div class="options">
+      <label><input type="radio" name="q23" value="0" /> Không khó khăn</label>
+      <label><input type="radio" name="q23" value="1" /> Khó khăn ít</label>
+      <label><input type="radio" name="q23" value="2" /> Khó khăn vừa phải</label>
+      <label><input type="radio" name="q23" value="3" /> Khó khăn nhiều</label>
+      <label><input type="radio" name="q23" value="4" /> Cực kì khó khăn</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="24">
+    <h4>A8. Đi mua sắm</h4>
+    <div class="options">
+      <label><input type="radio" name="q24" value="0" /> Không khó khăn</label>
+      <label><input type="radio" name="q24" value="1" /> Khó khăn ít</label>
+      <label><input type="radio" name="q24" value="2" /> Khó khăn vừa phải</label>
+      <label><input type="radio" name="q24" value="3" /> Khó khăn nhiều</label>
+      <label><input type="radio" name="q24" value="4" /> Cực kì khó khăn</label>
+    </div>
+  </div>
+</div>
+
+  <div class="question" data-question="25">
+    <h4>A9. Mang tất (vớ)</h4>
+    <div class="options">
+      <label><input type="radio" name="q25" value="0" /> Không khó khăn</label>
+      <label><input type="radio" name="q25" value="1" /> Khó khăn ít</label>
+      <label><input type="radio" name="q25" value="2" /> Khó khăn vừa phải</label>
+      <label><input type="radio" name="q25" value="3" /> Khó khăn nhiều</label>
+      <label><input type="radio" name="q25" value="4" /> Cực kì khó khăn</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="26">
+    <h4>A10. Ngồi dậy từ giường</h4>
+    <div class="options">
+      <label><input type="radio" name="q26" value="0" /> Không khó khăn</label>
+      <label><input type="radio" name="q26" value="1" /> Khó khăn ít</label>
+      <label><input type="radio" name="q26" value="2" /> Khó khăn vừa phải</label>
+      <label><input type="radio" name="q26" value="3" /> Khó khăn nhiều</label>
+      <label><input type="radio" name="q26" value="4" /> Cực kì khó khăn</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="27">
+    <h4>A11. Cởi tất (vớ)</h4>
+    <div class="options">
+      <label><input type="radio" name="q27" value="0" /> Không khó khăn</label>
+      <label><input type="radio" name="q27" value="1" /> Khó khăn ít</label>
+      <label><input type="radio" name="q27" value="2" /> Khó khăn vừa phải</label>
+      <label><input type="radio" name="q27" value="3" /> Khó khăn nhiều</label>
+      <label><input type="radio" name="q27" value="4" /> Cực kì khó khăn</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="28">
+    <h4>A12. Nằm trên giường (xoay người, giữ yên khớp gối)</h4>
+    <div class="options">
+      <label><input type="radio" name="q28" value="0" /> Không khó khăn</label>
+      <label><input type="radio" name="q28" value="1" /> Khó khăn ít</label>
+      <label><input type="radio" name="q28" value="2" /> Khó khăn vừa phải</label>
+      <label><input type="radio" name="q28" value="3" /> Khó khăn nhiều</label>
+      <label><input type="radio" name="q28" value="4" /> Cực kì khó khăn</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="29">
+    <h4>A13. Vào/ra khỏi nơi tắm</h4>
+    <div class="options">
+      <label><input type="radio" name="q29" value="0" /> Không khó khăn</label>
+      <label><input type="radio" name="q29" value="1" /> Khó khăn ít</label>
+      <label><input type="radio" name="q29" value="2" /> Khó khăn vừa phải</label>
+      <label><input type="radio" name="q29" value="3" /> Khó khăn nhiều</label>
+      <label><input type="radio" name="q29" value="4" /> Cực kì khó khăn</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="30">
+    <h4>A14. Ngồi</h4>
+    <div class="options">
+      <label><input type="radio" name="q30" value="0" /> Không khó khăn</label>
+      <label><input type="radio" name="q30" value="1" /> Khó khăn ít</label>
+      <label><input type="radio" name="q30" value="2" /> Khó khăn vừa phải</label>
+      <label><input type="radio" name="q30" value="3" /> Khó khăn nhiều</label>
+      <label><input type="radio" name="q30" value="4" /> Cực kì khó khăn</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="31">
+    <h4>A15. Ngồi xuống/đứng lên khi đi vệ sinh</h4>
+    <div class="options">
+      <label><input type="radio" name="q31" value="0" /> Không khó khăn</label>
+      <label><input type="radio" name="q31" value="1" /> Khó khăn ít</label>
+      <label><input type="radio" name="q31" value="2" /> Khó khăn vừa phải</label>
+      <label><input type="radio" name="q31" value="3" /> Khó khăn nhiều</label>
+      <label><input type="radio" name="q31" value="4" /> Cực kì khó khăn</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="32">
+    <h4>A16. Các công việc nặng trong nhà (di chuyển các thùng nặng, chà sàn, lau sàn,...)</h4>
+    <div class="options">
+      <label><input type="radio" name="q32" value="0" /> Không khó khăn</label>
+      <label><input type="radio" name="q32" value="1" /> Khó khăn ít</label>
+      <label><input type="radio" name="q32" value="2" /> Khó khăn vừa phải</label>
+      <label><input type="radio" name="q32" value="3" /> Khó khăn nhiều</label>
+      <label><input type="radio" name="q32" value="4" /> Cực kì khó khăn</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="33">
+    <h4>A17. Các công việc nhẹ trong nhà (nấu ăn, phủi bụi,...)</h4>
+    <div class="options">
+      <label><input type="radio" name="q33" value="0" /> Không khó khăn</label>
+      <label><input type="radio" name="q33" value="1" /> Khó khăn ít</label>
+      <label><input type="radio" name="q33" value="2" /> Khó khăn vừa phải</label>
+      <label><input type="radio" name="q33" value="3" /> Khó khăn nhiều</label>
+      <label><input type="radio" name="q33" value="4" /> Cực kì khó khăn</label>
+    </div>
+  </div>
+</div>
+     <div class="section">
+  <h3 class="section-title">CÁC HOẠT ĐỘNG CHỨC NĂNG, THỂ THAO, GIẢI TRÍ</h3>
+  <p class="section-description">
+    Các câu hỏi tiếp theo quan tâm đến hoạt động thể chất của bạn khi hoạt động ở cường độ cao hơn.
+    Các câu hỏi nên được trả lời dựa trên mức độ khó khăn bạn cảm nhận trong <strong>tuần trước</strong> do khớp gối của bạn.
+  </p>
+
+  <div class="question" data-question="34">
+    <h4>SP1. Ngồi xổm/ngồi chồm hổm</h4>
+    <div class="options">
+      <label><input type="radio" name="q34" value="0" /> Không khó khăn</label>
+      <label><input type="radio" name="q34" value="1" /> Khó khăn ít</label>
+      <label><input type="radio" name="q34" value="2" /> Khó khăn vừa phải</label>
+      <label><input type="radio" name="q34" value="3" /> Khó khăn nhiều</label>
+      <label><input type="radio" name="q34" value="4" /> Cực kì khó khăn</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="35">
+    <h4>SP2. Chạy</h4>
+    <div class="options">
+      <label><input type="radio" name="q35" value="0" /> Không khó khăn</label>
+      <label><input type="radio" name="q35" value="1" /> Khó khăn ít</label>
+      <label><input type="radio" name="q35" value="2" /> Khó khăn vừa phải</label>
+      <label><input type="radio" name="q35" value="3" /> Khó khăn nhiều</label>
+      <label><input type="radio" name="q35" value="4" /> Cực kì khó khăn</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="36">
+    <h4>SP3. Nhảy</h4>
+    <div class="options">
+      <label><input type="radio" name="q36" value="0" /> Không khó khăn</label>
+      <label><input type="radio" name="q36" value="1" /> Khó khăn ít</label>
+      <label><input type="radio" name="q36" value="2" /> Khó khăn vừa phải</label>
+      <label><input type="radio" name="q36" value="3" /> Khó khăn nhiều</label>
+      <label><input type="radio" name="q36" value="4" /> Cực kì khó khăn</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="37">
+    <h4>SP4. Khi vặn / xoay người trên khớp gối bị tổn thương của bạn</h4>
+    <div class="options">
+      <label><input type="radio" name="q37" value="0" /> Không khó khăn</label>
+      <label><input type="radio" name="q37" value="1" /> Khó khăn ít</label>
+      <label><input type="radio" name="q37" value="2" /> Khó khăn vừa phải</label>
+      <label><input type="radio" name="q37" value="3" /> Khó khăn nhiều</label>
+      <label><input type="radio" name="q37" value="4" /> Cực kì khó khăn</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="38">
+    <h4>SP5. Quỳ</h4>
+    <div class="options">
+      <label><input type="radio" name="q38" value="0" /> Không khó khăn</label>
+      <label><input type="radio" name="q38" value="1" /> Khó khăn ít</label>
+      <label><input type="radio" name="q38" value="2" /> Khó khăn vừa phải</label>
+      <label><input type="radio" name="q38" value="3" /> Khó khăn nhiều</label>
+      <label><input type="radio" name="q38" value="4" /> Cực kì khó khăn</label>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3 class="section-title">CHẤT LƯỢNG CUỘC SỐNG</h3>
+
+  <div class="question" data-question="39">
+    <h4>Q1. Tần suất bạn nhận thấy khớp gối của mình có vấn đề?</h4>
+    <div class="options">
+      <label><input type="radio" name="q39" value="0" /> Không bao giờ</label>
+      <label><input type="radio" name="q39" value="1" /> Hàng tháng</label>
+      <label><input type="radio" name="q39" value="2" /> Hàng tuần</label>
+      <label><input type="radio" name="q39" value="3" /> Hàng ngày</label>
+      <label><input type="radio" name="q39" value="4" /> Liên tục</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="40">
+    <h4>Q2. Bạn có từng điều chỉnh lối sống của bản thân để tránh những hoạt động có nguy cơ tổn thương khớp gối chưa?</h4>
+    <div class="options">
+      <label><input type="radio" name="q40" value="0" /> Hoàn toàn không</label>
+      <label><input type="radio" name="q40" value="1" /> Ít</label>
+      <label><input type="radio" name="q40" value="2" /> Vừa phải</label>
+      <label><input type="radio" name="q40" value="3" /> Nghiêm trọng</label>
+      <label><input type="radio" name="q40" value="4" /> Hoàn toàn</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="41">
+    <h4>Q3. Bạn gặp rắc rối đến mức độ nào khi thiếu tự tin vào khớp gối của mình?</h4>
+    <div class="options">
+      <label><input type="radio" name="q41" value="0" /> Hoàn toàn không</label>
+      <label><input type="radio" name="q41" value="1" /> Ít</label>
+      <label><input type="radio" name="q41" value="2" /> Vừa phải</label>
+      <label><input type="radio" name="q41" value="3" /> Nghiêm trọng</label>
+      <label><input type="radio" name="q41" value="4" /> Cực kì nghiêm trọng</label>
+    </div>
+  </div>
+
+  <div class="question" data-question="42">
+    <h4>Q4. Nhìn chung, bạn gặp khó khăn đến mức nào với khớp gối của mình?</h4>
+    <div class="options">
+      <label><input type="radio" name="q42" value="0" /> Không</label>
+      <label><input type="radio" name="q42" value="1" /> Ít</label>
+      <label><input type="radio" name="q42" value="2" /> Vừa phải</label>
+      <label><input type="radio" name="q42" value="3" /> Nghiêm trọng</label>
+      <label><input type="radio" name="q42" value="4" /> Cực kì nghiêm trọng</label>
+    </div>
+  </div>
+</div>
+
+
+      <div id="thankYouMessage" style="display: none;">Cảm ơn bạn rất nhiều đã hoàn thành tất cả câu hỏi của bảng câu hỏi này.</div>
+
+      <div class="actions">
+        <button type="button" id="calculateBtn">Tính Điểm KOOS</button>
+        <h3 id="result"></h3>
+      </div>
+    </form>
+
+    <!-- Form nhập thông tin người dùng -->
+    <div id="userInfoForm" class="user-info-form">
+      <input type="text" id="nameInput" placeholder="Nhập họ tên (không dấu)" required>
+      <input type="number" id="birthYearInput" placeholder="Nhập năm sinh" required>
+      <button id="downloadPdfBtn">Lưu kết quả của bạn</button>
+    </div>
+
+    <footer class="footer">
+      <p>© KOOS TIẾNG VIỆT</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
