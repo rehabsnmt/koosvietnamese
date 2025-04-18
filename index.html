@@ -16,6 +16,10 @@
     <header>
       <h2>Knee Injury and Osteoarthritis Outcome Score (KOOS) ©</h2>
       <p>Khảo sát KHỚP GỐI</p>
+      <!-- Form nhập thông tin người dùng -->
+    <div id="userInfoForm" class="user-info-form">
+      <input type="text" id="nameInput" placeholder="Nhập họ tên (không dấu)" required>
+      <input type="number" id="birthYearInput" placeholder="Nhập năm sinh" required>
     </header>
 
     <!-- Instructions Section -->
@@ -526,8 +530,7 @@
     </div>
   </div>
 </div>
-     <!-- Các câu hỏi khác tương tự -->
-      <!-- Mỗi câu hỏi sẽ được giữ nguyên cấu trúc để dễ dàng sửa đổi -->
+   
 
       <div id="thankYouMessage" style="display: none;">Cảm ơn bạn rất nhiều đã hoàn thành tất cả câu hỏi của bảng câu hỏi này.</div>
 
@@ -537,10 +540,7 @@
       </div>
     </form>
 
-    <!-- Form nhập thông tin người dùng -->
-    <div id="userInfoForm" class="user-info-form">
-      <input type="text" id="nameInput" placeholder="Nhập họ tên (không dấu)" required>
-      <input type="number" id="birthYearInput" placeholder="Nhập năm sinh" required>
+    
       <button id="downloadPdfBtn">Lưu kết quả của bạn</button>
     </div>
 
