@@ -1,7 +1,3 @@
-import { hienThiSoLuong, tangSoLuongHoanThanh } from "./firebase-counter.js";
-document.addEventListener("DOMContentLoaded", function () {
-  hienThiSoLuong(); // Hiển thị số lượt hoàn thành khi trang tải
-});
 document.addEventListener("DOMContentLoaded", function () {
   // Highlight selected answer
   document.querySelectorAll(".options label").forEach((label) => {
@@ -89,7 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Bạn phải trả lời tất cả các câu hỏi!");
     } else {
       displayKOOSResults();
-      tangSoLuongHoanThanh(); // Tăng số lượng hoàn thành khảo sát
     }
   });
 
