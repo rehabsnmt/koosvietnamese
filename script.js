@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const resultContainer = document.getElementById("result");
     resultContainer.innerHTML = ""; // Clear existing content
 
-    // Display scores
+    // Create elements for each result and display horizontally
     for (const [key, value] of Object.entries(scores)) {
       const scoreElement = document.createElement("div");
       scoreElement.classList.add("score-item");
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("thankYouMessage").style.display = "block";
 
-    // Tăng số lượt hoàn thành khảo sát
+    // Ghi nhận lượt hoàn thành khảo sát
     tangSoLuongHoanThanh();
   }
 
@@ -94,5 +94,61 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       displayKOOSResults();
     }
+  });
+
+  // Generate PDF
+  function generatePDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    const name = document.getElementById("nameInput").value;
+    const birthYear = document.getElementById("birthYearInput").value;
+
+    if (!name || !birthYear) {
+      alert("Vui lòng nhập tên và năm sinh!");
+      return;
+    }
+
+    const downloadDate = new Date().toLocaleString();
+
+    doc.text("KET QUA TINH DIEM KOOS", 105, 20, { align: "center" });
+
+    doc.text(`Ho ten: ${name}`, 10, 30);
+    doc.text(`Nam sinh: ${birthYear}`, 10, 40);
+    doc.text(`Thoi gian: ${downloadDate}`, 10, 50);
+
+    doc.setLineWidth(0.5);
+    doc.line(10, 55, 200, 55);
+
+    const scores = {
+      symptoms: calculateKOOSScore(questionGroups.symptoms),
+      pain: calculateKOOSScore(questionGroups.pain),
+      adl: calculateKOOSScore(questionGroups.adl),
+      sport: calculateKOOSScore(questionGroups.sport),
+      qol: calculateKOOSScore(questionGroups.qol),
+    };
+
+    doc.text("KOOS SCORE:", 10, 70);
+
+    let yPos = 80;
+    for (const [key, value] of Object.entries(scores)) {
+      const scoreText = `${key.toUpperCase()}: ${value !== null ? value : "Chưa trả lời đủ câu hỏi"}`;
+      doc.text(scoreText, 10, yPos);
+      yPos += 10;
+    }
+
+    doc.setLineWidth(0.5);
+    doc.line(10, yPos + 5, 200, yPos + 5);
+
+    doc.setFontSize(40);
+    doc.setTextColor(200, 200, 200);
+    doc.text("KOOS", 15, 280);
+
+    doc.save("KOOS_Score_Report.pdf");
+  }
+
+  // Add event for download PDF button
+  document.getElementById("downloadPdfBtn").addEventListener("click", function () {
+    generatePDF();
   });
 });
