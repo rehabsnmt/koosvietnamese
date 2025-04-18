@@ -1,9 +1,4 @@
-import { hienThiSoLuong, tangSoLuongHoanThanh } from "./firebase-counter.js";
-
 document.addEventListener("DOMContentLoaded", function () {
-  // Hiển thị số lượt hoàn thành khi trang tải
-  hienThiSoLuong();
-
   // Highlight selected answer
   document.querySelectorAll(".options label").forEach((label) => {
     label.addEventListener("click", function () {
@@ -63,9 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     document.getElementById("thankYouMessage").style.display = "block";
-
-    // Ghi nhận lượt hoàn thành khảo sát
-    tangSoLuongHoanThanh();
   }
 
   // Handle calculate button click
