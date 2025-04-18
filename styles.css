@@ -176,13 +176,36 @@ button:hover {
   box-sizing: border-box; /* Ensure padding doesn't affect width */
 }
 
+/* Căn giữa nút lưu kết quả */
 #downloadPdfBtn {
   margin-top: 10px;
   background-color: #00796b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  display: block; /* Chuyển thành block để dễ căn giữa */
+  margin-left: auto; /* Căn giữa */
+  margin-right: auto;
+  text-align: center; /* Đảm bảo text bên trong được căn giữa */
 }
 
 #downloadPdfBtn:hover {
   background-color: #005f54;
+}
+
+/* Hiển thị kết quả theo hàng ngang */
+#result {
+  display: flex; /* Sử dụng flexbox để hiển thị theo hàng ngang */
+  justify-content: center; /* Căn giữa nội dung */
+  gap: 20px; /* Khoảng cách giữa các mục */
+  flex-wrap: wrap; /* Đảm bảo nội dung không tràn trên màn hình nhỏ */
+  margin-top: 20px;
+  font-size: 18px;
+  color: #333;
+  text-align: center;
 }
 
 /* Footer Styling */
