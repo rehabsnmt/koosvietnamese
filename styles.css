@@ -1,0 +1,219 @@
+/* General Reset */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Container Styling */
+.container {
+  max-width: 80%;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styling */
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+header h2 {
+  font-size: 36px;
+  font-weight: bold;
+  color: #00796b;
+  margin-bottom: 10px;
+}
+
+header p {
+  font-size: 20px;
+  color: #666;
+}
+
+/* Section Titles */
+.section-title {
+  text-align: justify;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* Section Descriptions */
+.section-description {
+  text-align: justify;
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+/* Instructions Styling */
+.instructions p {
+  font-size: 18px;
+  text-align: justify;
+  color: #444;
+  margin-bottom: 30px;
+  line-height: 1.8;
+}
+
+/* Question Styling */
+.question {
+  margin-bottom: 25px;
+}
+
+.question h4 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: #333;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+/* Options Styling */
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 2px solid #999;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+input[type="radio"]:checked {
+  border-color: #4caf50;
+  background-color: #4caf50;
+}
+
+input[type="radio"]:checked::after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin: auto;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+/* Buttons Styling */
+button {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 20px auto;
+  padding: 15px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+/* User Info Form */
+.user-info-form {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.user-info-form input {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+#downloadPdfBtn {
+  margin-top: 10px;
+  background-color: #00796b;
+}
+
+#downloadPdfBtn:hover {
+  background-color: #005f54;
+}
+
+/* Footer Styling */
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 16px;
+  color: #aaa;
+}
+
+/* Thank You Message */
+#thankYouMessage {
+  font-size: 18px;
+  color: #00796b;
+  font-weight: bold;
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Result Styling */
+#result {
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  header h2 {
+    font-size: 28px;
+  }
+
+  header p, .section-description, .instructions p, .question h4 {
+    font-size: 16px;
+  }
+
+  button {
+    font-size: 16px;
+  }
+
+  .user-info-form input {
+    font-size: 14px;
+  }
+
+  #result {
+    font-size: 20px;
+  }
+}
