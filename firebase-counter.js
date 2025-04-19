@@ -7,6 +7,8 @@ export async function hienThiSoLuong() {
     const docSnap = await getDoc(docRef);
     const count = docSnap.exists() ? docSnap.data().soluong || 0 : 0;
     document.getElementById("completionCount").innerText = "Số lượt hoàn thành: " + count;
+     completionElement.style.textAlign = "right";
+    completionElement.style.fontSize = "20px";
   } catch (error) {
     console.error("Lỗi khi đọc số lượng:", error);
   }
