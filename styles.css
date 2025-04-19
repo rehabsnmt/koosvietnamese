@@ -62,9 +62,10 @@ header p {
   line-height: 1.8;
 }
 
-/* Question Styling */
+/* Styling for Questions */
 .question {
-  margin-bottom: 25px;
+  margin-left: 20px; /* Đẩy câu hỏi vào trong 20px */
+  margin-bottom: 25px; /* Khoảng cách giữa các câu hỏi */
 }
 
 .question h4 {
