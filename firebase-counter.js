@@ -6,7 +6,7 @@ export async function hienThiSoLuong() {
     const docRef = doc(db, "1", "dahoanthanh");
     const docSnap = await getDoc(docRef);
     const count = docSnap.exists() ? docSnap.data().soluong || 0 : 0;
-    document.getElementById("completionCount").innerText = "Đã có " + count + "lượt hoàn thành khảo sát";
+    document.getElementById("completionCount").innerText = "Đã có " + count + " lượt hoàn thành khảo sát";
      completionElement.style.textAlign = "right";
     completionElement.style.fontSize = "20px";
   } catch (error) {
