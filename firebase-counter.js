@@ -6,9 +6,13 @@ export async function hienThiSoLuong() {
     const docRef = doc(db, "1", "dahoanthanh");
     const docSnap = await getDoc(docRef);
     const count = docSnap.exists() ? docSnap.data().soluong || 0 : 0;
-    document.getElementById("completionCount").innerText = "Đã có " + count + " lượt hoàn thành khảo sát";
-     completionElement.style.textAlign = "right";
-    completionElement.style.fontSize = "20px";
+
+    const completionElement = document.getElementById("completionCount");
+    completionElement.innerText = "Số lượt hoàn thành khảo sát: " + count;
+
+
+    completionElement.style.textAlign = "right";  // Căn phải
+    completionElement.style.fontSize = "20px";    // Chỉnh cỡ chữ
   } catch (error) {
     console.error("Lỗi khi đọc số lượng:", error);
   }
