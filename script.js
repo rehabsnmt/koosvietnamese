@@ -85,7 +85,6 @@ document.addEventListener("DOMContentLoaded", function () {
       alert("Bạn phải trả lời tất cả các câu hỏi!");
     } else {
       displayKOOSResults();
-        onSurveyCompleted(); 
     }
   });
 
