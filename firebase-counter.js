@@ -11,8 +11,9 @@ export async function hienThiSoLuong() {
     completionElement.innerText = "Số lượt hoàn thành khảo sát: " + count;
 
 
-    completionElement.style.textAlign = "right";  // Căn phải
-    completionElement.style.fontSize = "20px";    // Chỉnh cỡ chữ
+    completionElement.style.textAlign = "right";
+    completionElement.style.fontSize = "20px";    
+    completionElement.style.paddingRight = "20px";
   } catch (error) {
     console.error("Lỗi khi đọc số lượng:", error);
   }
