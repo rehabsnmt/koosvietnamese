@@ -78,10 +78,19 @@ header p {
 
 /* Options Styling */
 .options {
-  display: grid; /* Sử dụng grid layout */
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Các cột có độ rộng tối thiểu 250px, dàn đều */
-  gap: 20px; /* Khoảng cách giữa các mục */
-  justify-items: stretch; /* Đảm bảo các mục kéo dãn đầy đủ */
+  display: flex; /* Sử dụng flexbox để căn chỉnh đáp án */
+  flex-wrap: wrap; /* Cho phép nội dung xuống hàng nếu không đủ chỗ */
+  gap: 20px; /* Khoảng cách giữa các đáp án */
+  justify-content: center; /* Căn giữa đáp án trên màn hình lớn */
+}
+
+/* Màn hình nhỏ (<768px) - Đáp án hiển thị dọc */
+@media (max-width: 768px) {
+  .options {
+    flex-direction: column; /* Chuyển các đáp án thành dọc */
+    gap: 10px; /* Khoảng cách giữa các đáp án nhỏ hơn */
+    align-items: stretch; /* Đáp án kéo dài toàn bộ chiều rộng */
+  }
 }
 
 label {
