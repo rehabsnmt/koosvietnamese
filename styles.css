@@ -221,7 +221,7 @@ button:hover {
 
 /* Footer Styling */
 .footer {
-  text-align: center;
+  text-align: center; /* Căn giữa nội dung */
   margin-top: 40px;
   font-size: 16px;
   color: #aaa;
