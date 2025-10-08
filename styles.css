@@ -6,7 +6,13 @@ body {
   background-color: #f9f9f9;
   color: #333;
 }
-
+/* Ghi đè style cho phần thông tin liên hệ trong header */
+header .contact-info p {
+  font-size: 12px; /* <-- Cỡ chữ nhỏ hơn mà bạn muốn */
+  line-height: 1.6;
+  text-align: justify;
+  overflow-wrap: break-word;
+}
 /* Container Styling */
 .container {
   max-width: 80%;
