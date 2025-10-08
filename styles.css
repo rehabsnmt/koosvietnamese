@@ -8,7 +8,7 @@ body {
 }
 /* Ghi đè style cho phần thông tin liên hệ trong header */
 header .contact-info p {
-  font-size: 14px; /* <-- Cỡ chữ nhỏ hơn mà bạn muốn */
+  font-size: 18px; /* <-- Cỡ chữ nhỏ hơn mà bạn muốn */
   line-height: 1.6;
   text-align: justify;
   overflow-wrap: break-word;
