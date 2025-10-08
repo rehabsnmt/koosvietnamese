@@ -35,6 +35,11 @@ header p {
   color: #666;
 }
 
+/* Class to justify text */
+.justify-text {
+  text-align: justify;
+}
+
 /* Section Titles */
 .section-title {
   text-align: justify;
@@ -64,8 +69,8 @@ header p {
 
 /* Styling for Questions */
 .question {
-  margin-left: 20px; /* Đẩy câu hỏi vào trong 20px */
-  margin-bottom: 25px; /* Khoảng cách giữa các câu hỏi */
+  margin-left: 20px;
+  margin-bottom: 25px;
 }
 
 .question h4 {
@@ -79,25 +84,17 @@ header p {
 
 /* Options Styling */
 .options {
-  display: flex; /* Sử dụng flexbox để căn chỉnh đáp án */
-  flex-wrap: wrap; /* Cho phép nội dung xuống hàng nếu không đủ chỗ */
-  gap: 20px; /* Khoảng cách giữa các đáp án */
-  justify-content: center; /* Căn giữa đáp án trên màn hình lớn */
-}
-
-/* Màn hình nhỏ (<768px) - Đáp án hiển thị dọc */
-@media (max-width: 768px) {
-  .options {
-    flex-direction: column; /* Chuyển các đáp án thành dọc */
-    gap: 10px; /* Khoảng cách giữa các đáp án nhỏ hơn */
-    align-items: stretch; /* Đáp án kéo dài toàn bộ chiều rộng */
-  }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
 
 label {
   display: flex;
+  flex-direction: row-reverse; /* Đảo vị trí nút và chữ */
   align-items: center;
-  justify-content: space-between; /* Căn đều nội dung bên trong label */
+  justify-content: space-between;
   gap: 10px;
   font-size: 18px;
   cursor: pointer;
@@ -106,10 +103,11 @@ label {
   border-radius: 8px;
   background-color: #f9f9f9;
   transition: background-color 0.3s, border-color 0.3s;
-  text-align: justify; /* Đảm bảo nội dung được căn đều hai bên */
+  text-align: justify;
+  flex-grow: 1; /* Giúp các label có độ rộng linh hoạt */
 }
 label:hover {
-  background-color: #eaf4ea; /* Slight highlight on hover */
+  background-color: #eaf4ea;
   border-color: #4caf50;
 }
 
@@ -124,6 +122,7 @@ input[type="radio"] {
   outline: none;
   cursor: pointer;
   transition: all 0.3s ease;
+  flex-shrink: 0; /* Ngăn nút bị co lại */
 }
 
 input[type="radio"]:checked {
@@ -136,25 +135,16 @@ input[type="radio"]:checked::after {
   display: block;
   width: 10px;
   height: 10px;
-  margin: auto;
+  margin: 3px;
   background-color: #fff;
   border-radius: 50%;
 }
 
-/* Make the selected label stand out and persist */
-input[type="radio"]:checked + label {
-  background-color: #b3e5fc; /* Màu nền xanh nhạt */
-  border-color: #03a9f4;    /* Đường viền xanh */
-  font-weight: bold;        /* Chữ đậm */
-  color: #01579b;           /* Màu chữ xanh đậm */
-}
-
-/* Duy trì trạng thái đã chọn ngay cả khi bài làm hoàn tất */
 label.selected {
-  background-color: #b3e5fc; /* Màu nền xanh nhạt */
-  border-color: #03a9f4;    /* Đường viền xanh */
-  font-weight: bold;        /* Chữ đậm */
-  color: #01579b;           /* Màu chữ xanh đậm */
+  background-color: #b3e5fc;
+  border-color: #03a9f4;
+  font-weight: bold;
+  color: #01579b;
   transition: all 0.3s ease;
 }
 
@@ -187,51 +177,44 @@ button:hover {
 
 .user-info-form input {
   display: block;
-  width: 100%; /* Full width for responsiveness */
-  max-width: 90%; /* Limit the width for better appearance on large screens */
+  width: 100%;
+  max-width: 90%;
   margin: 10px auto;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ddd;
   border-radius: 6px;
-  box-sizing: border-box; /* Ensure padding doesn't affect width */
+  box-sizing: border-box;
 }
 
-/* Căn giữa nút lưu kết quả */
 #downloadPdfBtn {
-  margin-top: 10px;
-  background-color: #00796b;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-  display: block; /* Chuyển thành block để dễ căn giữa */
-  margin-left: auto; /* Căn giữa */
-  margin-right: auto;
-  text-align: center; /* Đảm bảo text bên trong được căn giữa */
+    margin-top: 10px;
+    background-color: #00796b;
 }
 
 #downloadPdfBtn:hover {
-  background-color: #005f54;
+    background-color: #005f54;
 }
 
-/* Hiển thị kết quả theo hàng ngang */
+/* Result Styling */
 #result {
-  display: flex; /* Sử dụng flexbox để hiển thị theo hàng ngang */
-  justify-content: center; /* Căn giữa nội dung */
-  gap: 20px; /* Khoảng cách giữa các mục */
-  flex-wrap: wrap; /* Đảm bảo nội dung không tràn trên màn hình nhỏ */
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
   margin-top: 20px;
-  font-size: 18px;
+  font-size: 24px;
   color: #333;
   text-align: center;
 }
+.score-item {
+    font-size: 18px;
+}
+
 
 /* Footer Styling */
 .footer {
-  text-align: center; /* Căn giữa nội dung */
+  text-align: center;
   margin-top: 40px;
   font-size: 16px;
   color: #aaa;
@@ -246,26 +229,42 @@ button:hover {
   margin: 20px 0;
 }
 
-/* Result Styling */
-#result {
-  font-size: 24px;
-  color: #333;
-  text-align: center;
-  margin-top: 20px;
+/* Completion Count */
+#completionCount {
+    text-align: right;
+    font-size: 20px;    
+    padding-right: 20px;
+    color: #666;
 }
+
+/* Unanswered question highlight */
+.question.unanswered {
+    border: 2px solid red;
+    padding: 10px;
+    border-radius: 8px;
+}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .container {
-    padding: 20px;
+    max-width: 95%;
+    padding: 15px;
+    margin: 10px auto;
   }
 
   header h2 {
     font-size: 28px;
   }
 
-  header p, .section-description, .instructions p, .question h4 {
+  header p, .section-description, .instructions p, .question h4, label {
     font-size: 16px;
+  }
+
+  .options {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
   }
 
   button {
@@ -274,16 +273,12 @@ button:hover {
 
   .user-info-form input {
     font-size: 14px;
-    max-width: 100%; /* Use full width on smaller screens */
-  }
-
-  /* Adjust options to stack vertically on smaller screens */
-  .options {
-    flex-direction: column;
-    gap: 5px; /* Reduce gap for vertical stacking */
+    max-width: 100%;
   }
 
   #result {
     font-size: 20px;
+    flex-direction: column;
+    gap: 10px;
   }
 }
